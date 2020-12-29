@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -44,14 +44,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/", "/login", "/logout", "/home").permitAll();
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/sellerInfo/**").access("hasAnyRole('ROLE_SELLER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/buyer/**").access("hasAnyRole('ROLE_BUYER', 'ROLE_ADMIN', 'ROLE_SELLER')");
+        http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
         http.authorizeRequests().and().formLogin()//
                 // Submit URL of login page.
                 .loginProcessingUrl("/authenticate") // Submit URL
                 .loginPage("/login")
-                .defaultSuccessUrl("/list")//
+                .defaultSuccessUrl("/userProfile")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")

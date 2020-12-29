@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String homePage()
     {
         return "homePage";
@@ -17,18 +17,6 @@ public class HomeController {
     public String login()
     {
         return "loginPage";
-    }
-
-    @PostMapping("/authenticate")
-    public String authenticate()
-    {
-        return "hahaha";
-    }
-
-    @GetMapping("/list")
-    public String productList()
-    {
-        return "productListPage";
     }
 
 }

@@ -24,8 +24,4 @@ class AmShopApplicationTests {
 		assertEquals("amshop_db", schema);
 	}
 
-	@Test
-	void contextLoads() {
-	}
-
 }

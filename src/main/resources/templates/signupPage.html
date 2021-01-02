@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Employee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Employee Registration</h2>
+            <form th:action="@{/save}"  method="post">
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" th:value="${user?.username}" name = "username">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" th:value="${user?.password}" name = "password">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Firstname</label>
+                        <input type="text" class="form-control" th:value="${user?.first_name}" name = "first_name">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Lastname</label>
+                        <input type="text" class="form-control" th:value="${user?.last_name}" name = "last_name">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Sign up as: </label>
+                        <select class="form-control" th:value="${roleNameHolder.roleName}" name = "roleName" >
+                            <option value="">Choose...</option>
+                            <option value="ROLE_BUYER">Customer</option>
+                            <option value="ROLE_SELLER">Seller</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Gender </label>
+                        <select class="form-control" th:value="${user?.gender}" name ="gender">
+                            <option value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Date of birth</label>
+                        <input type="date" class="form-control" placeholder="yyyy-MM-dd" id="join_datepicker" th:value="${user?.date_of_birth}" name = "date_of_birth">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" th:value="${user?.phone}" name = "phone">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Street</label>
+                        <input type="text" class="form-control" th:value="${user?.street}" name = "street">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" th:value="${user?.city}" name = "city">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Zip</label>
+                        <input type="number" class="form-control" th:value="${user?.zip}" name = "zip">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" th:value="${user?.state}" name = "state">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Country</label>
+                        <input type="text" class="form-control" th:value="${user?.country}" name = "country">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

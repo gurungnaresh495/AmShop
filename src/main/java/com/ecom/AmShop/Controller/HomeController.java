@@ -41,6 +41,12 @@ public class HomeController {
         return "signupPage";
     }
 
+    @GetMapping("/userProfile")
+    public String temProfile()
+    {
+        return "userProfile";
+    }
+
     @PostMapping("/save")
     public String SaveUser(@ModelAttribute("user") Users user, @ModelAttribute("roleNameHolder") RoleNameHolder roleNameHolder)
     {

@@ -17,11 +17,11 @@ public class AmShopHomeControllerTest {
     @Autowired
     private HomeController homeController = new HomeController();
 
-    @Test
-    public void loginPageTest()
-    {
-        assertEquals("loginPage", homeController.login());
-    }
+//    @Test
+//    public void loginPageTest()
+//    {
+//        assertEquals("loginPage", homeController.login());
+//    }
 
     @Test
     public void homePageTest()

@@ -32,6 +32,12 @@ public class UserController {
         return this.userService.findUserByUsername(username);
     }
 
+    @GetMapping("/{username}/getProducts")
+    public List<Product> getUserProducts(@PathVariable String username)
+    {
+        return this.userService.findUserByUsername(username).getProducts();
+    }
+
     @GetMapping("/login")
     public String login()
     {
@@ -39,18 +45,17 @@ public class UserController {
     }
 
     @PostMapping("/{username}/saveProduct")
-    public void saveSellerProduct(@ModelAttribute("id") int id, @ModelAttribute("multipartFile") MultipartFile multipartFile)
-    {
-
-    }
-
-    @PostMapping("/saveProduct")
-    public void saveProduct(@RequestPart("multipartFiles") List<MultipartFile> multipartFiles,
+    public void saveProduct(@PathVariable("username") String username,
+                            @RequestPart("multipartFiles") List<MultipartFile> multipartFiles,
                             @RequestPart("product") Product product)
     {
+        Users user = userService.findUserByUsername(username);
         List<Images> listOfImages = productService.getBLOBfromFile(multipartFiles, product);
         product.setImages(listOfImages);
-        productService.saveProduct(product);
+        product.setUser(user);
+        user.setProducts(product);
+        userService.saveUser(user);
     }
+
 
 }

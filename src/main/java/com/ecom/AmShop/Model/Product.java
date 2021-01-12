@@ -1,5 +1,6 @@
 package com.ecom.AmShop.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -42,5 +43,11 @@ public class Product {
     @OneToMany(mappedBy =  "product",cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     private List<Images> images = new ArrayList<Images>();
+
+    @JsonBackReference
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users user;
 
 }

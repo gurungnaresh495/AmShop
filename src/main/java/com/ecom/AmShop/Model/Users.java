@@ -1,5 +1,6 @@
 package com.ecom.AmShop.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -54,4 +57,19 @@ public class Users {
 
     @Column(name = "country")
     private String country;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy =  "user",cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    private List<Product> products = new ArrayList<Product>();
+
+    public void setProducts(Product product)
+    {
+        if (products.isEmpty() || product == null)
+        {
+            this.products = new ArrayList<Product>();
+        }
+        this.products.add(product);
+    }
+
 }

@@ -20,6 +20,7 @@ public class ProductServiceImpl implements ProductService{
     private ProductRepo  productRepo;
 
 
+
     @Override
     public List<Images> getBLOBfromFile(List<MultipartFile> fileList, Product product)
     {
@@ -36,6 +37,11 @@ public class ProductServiceImpl implements ProductService{
             listOfImages.add(img);
         }
         return listOfImages;
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        return productRepo.findById(id).get();
     }
 
     @Override

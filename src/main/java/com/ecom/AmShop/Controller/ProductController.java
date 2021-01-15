@@ -6,18 +6,22 @@ import com.ecom.AmShop.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/product")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable("id") int id)
+    {
+        return productService.getProductById(id);
+    }
 
     @GetMapping("/randomItems")
     public List<Product> getRandomProducts()
@@ -30,7 +34,4 @@ public class ProductController {
     {
         return this.productService.getAllProducts();
     }
-
-
-
 }

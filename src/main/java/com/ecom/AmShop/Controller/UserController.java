@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -36,12 +36,6 @@ public class UserController {
     public List<Product> getUserProducts(@PathVariable String username)
     {
         return this.userService.findUserByUsername(username).getProducts();
-    }
-
-    @GetMapping("/login")
-    public String login()
-    {
-        return "loginPage";
     }
 
     @PostMapping("/{username}/saveProduct")

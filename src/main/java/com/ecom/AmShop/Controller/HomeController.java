@@ -36,6 +36,11 @@ public class HomeController {
         model.addAttribute(roleNameHolder);
         return "signupPage";
     }
+    @GetMapping("/login")
+    public String login()
+    {
+        return "loginPage";
+    }
 
     @GetMapping("/userProfile")
     public String temProfile()
